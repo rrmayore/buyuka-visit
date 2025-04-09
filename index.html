@@ -1058,7 +1058,31 @@ Enjoy the website!`;
 </section>
 
 
-<section id="family-feedback">
+
+<section id="family-feedback" class="section">
+  <div class="container mx-auto px-4 py-20">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-blue-800">Share Your Feedback</h2>
+      <p class="mb-6 text-gray-600">We'd love to hear your thoughts and experiences from the visit.</p>
+      <form action="https://formsubmit.co/rmayore@gmail.com" method="POST" class="space-y-6">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://rrmayore.github.io/buyuka-visit/thank-you.html">
+        <div>
+          <label for="feedback-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+          <input type="text" id="feedback-name" name="name" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md" required>
+        </div>
+        <div>
+          <label for="feedback" class="block text-sm font-medium text-gray-700 mb-1">Your Feedback</label>
+          <textarea id="feedback" name="feedback" rows="4" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md" required></textarea>
+        </div>
+        <button type="submit" class="animated-btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium">
+          Submit Feedback
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
   <h2>Share Your Feedback</h2>
   <p>We'd love to hear your thoughts and experiences from the visit.</p>
   <form action="https://formsubmit.co/rmayore@gmail.com" method="POST">
@@ -1069,5 +1093,28 @@ Enjoy the website!`;
     <button type="submit">Submit</button>
   </form>
 </section>
+
+
+<script>
+  const fileInput = document.querySelector('#family-gallery input[type="file"]');
+  const galleryDisplay = document.getElementById('gallery-display');
+
+  if (fileInput && galleryDisplay) {
+    fileInput.addEventListener('change', (e) => {
+      galleryDisplay.innerHTML = '';
+      Array.from(e.target.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.alt = file.name;
+          img.className = 'w-32 h-32 object-cover m-2 rounded shadow';
+          galleryDisplay.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  }
+</script>
 
 </body></html>
