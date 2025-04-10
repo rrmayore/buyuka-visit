@@ -899,28 +899,6 @@
             updateCountdown();
             setInterval(updateCountdown, 1000);
             
-            // Contact Form
-            const contactForm = document.getElementById('contactForm');
-            const formMessage = document.getElementById('formMessage');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const message = document.getElementById('message').value;
-                
-                // This would typically go to a server endpoint
-                // For now we'll just show a success message
-                formMessage.classList.remove('hidden', 'text-red-600', 'text-green-600');
-                formMessage.classList.add('text-green-600', 'p-4', 'bg-green-50', 'rounded-md', 'mb-4');
-                formMessage.innerHTML = '<strong>Thank you for your message!</strong><br>The email would be sent to rmayore@gmail.com';
-                
-                // Reset form
-                contactForm.reset();
-            });
-            
             // Scroll to Top Button
             const scrollTopBtn = document.querySelector('.scrollTop');
             
