@@ -1,0 +1,1397 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Twenzetu Bunyore - Buyukah Family Visitation
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+            --primary-color: #2a4d69;
+            --secondary-color: #4b86b4;
+            --accent-color: #e7eff6;
+            --text-color: #333;
+            --light-color: #f5f5f5;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        .section {
+            min-height: 100vh;
+            padding: 5rem 1rem;
+            display: none;
+        }
+        
+        .active-section {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-section {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: white;
+        }
+        
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .nav-link {
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .animated-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .animated-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .animated-btn:hover::before {
+            left: 0;
+        }
+        
+        .animated-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-mobile {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            z-index: 100;
+            transition: right 0.3s ease;
+        }
+        
+        .nav-mobile.active {
+            right: 0;
+        }
+        
+        .form-input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(75, 134, 180, 0.2);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .animate-slide-in {
+            animation: slideInRight 0.5s forwards;
+        }
+        
+        .countdown-item {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .hamburger {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #1e3a8a;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        
+}
+        
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 8px; }
+        .hamburger span:nth-child(3) { top: 16px; }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 8px;
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 8px;
+        }
+        
+        .scrollTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            z-index: 99;
+        }
+        
+        .scrollTop.active {
+            opacity: 1;
+        }
+        
+        /* Download button styles */
+        .download-btn {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 90;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Gallery styles */
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .gallery-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .gallery-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .gallery-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .gallery-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        
+        .gallery-modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    
+.hamburger span {
+    display: block !important;
+    background-color: #1e3a8a !important; /* Tailwind blue-800 */
+}
+
+
+.hamburger span {
+    display: block !important;
+    background-color: #1e3a8a !important; /* Tailwind blue-800 */
+    height: 3px !important;
+    margin: 5px 0 !important;
+}
+  </style>
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="twenzetu_bunyore_icon_512.png" rel="apple-touch-icon" sizes="512x512"/>
+ </head>
+ <body>
+  <!-- Header and Navigation -->
+  <header class="fixed top-0 left-0 w-full bg-white bg-opacity-95 shadow-md z-50 animate-slide-in" style="opacity: 1;">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="logo">
+     <img src="twenzetu_bunyore_icon_512.png" alt="Twenzetu Logo" class="inline-block w-10 h-10 mr-2 align-middle"><h1 class="text-2xl font-bold text-blue-800">
+      Twenzetu Bunyore
+     </h1>
+    </div>
+    <nav class="hidden md:flex space-x-6">
+     <a class="nav-link" data-section="home">
+      Home
+     </a>
+     <a class="nav-link" data-section="about">
+      About
+     </a>
+     <a class="nav-link" data-section="gallery">
+      Gallery
+     </a>
+     <a class="nav-link" data-section="details">
+      Event Details
+     </a>
+     <a class="nav-link active" data-section="contact">
+      Contact
+     </a>
+     <a class="nav-link" data-section="family-gallery">
+      Family Gallery
+     </a>
+     <a class="nav-link" data-section="family-feedback">
+      Feedback
+     </a>
+    </nav>
+    <div class="md:hidden flex items-center">
+     <div class="hamburger">
+      <span class="bg-blue-800">
+      </span>
+      <span class="bg-blue-800">
+      </span>
+      <span class="bg-blue-800">
+      </span>
+     </div>
+    </div>
+   </div>
+  </header>
+  <!-- Mobile Navigation -->
+  <div class="nav-mobile">
+   <div class="px-6 py-8">
+    <div class="flex justify-end mb-8">
+     <div class="close-menu text-white text-2xl cursor-pointer">
+      <i class="fas fa-times">
+      </i>
+     </div>
+    </div>
+    <nav class="flex flex-col space-y-6">
+     <a class="text-white text-lg mobile-nav-link" data-section="home">
+      Home
+     </a>
+     <a class="text-white text-lg mobile-nav-link" data-section="about">
+      About
+     </a>
+     <a class="text-white text-lg mobile-nav-link" data-section="gallery">
+      Gallery
+     </a>
+     <a class="text-white text-lg mobile-nav-link" data-section="details">
+      Event Details
+     </a>
+     <a class="text-white text-lg mobile-nav-link active" data-section="contact">
+      Contact
+     </a>
+     <a class="text-white text-lg mobile-nav-link" data-section="family-gallery">
+      Family Gallery
+     </a>
+     <a class="text-white text-lg mobile-nav-link" data-section="family-feedback">
+      Feedback
+     </a>
+    </nav>
+   </div>
+  </div>
+  <!-- Home Section -->
+  <section class="section active-section" id="home">
+   <div class="hero-section h-screen flex items-center justify-center" style="background-image: url('https://abirikenya.com/wp-content/uploads/2024/11/bunyore-hills-1.jpg');">
+    <div class="hero-overlay">
+    </div>
+    <div class="container mx-auto px-4 z-10 text-center">
+     <h1 class="text-4xl md:text-6xl font-bold mb-4">
+      Twenzetu Bunyore
+     </h1>
+     <h2 class="text-2xl md:text-3xl mb-8">
+      Buyukah Family Visitation
+     </h2>
+     <p class="text-xl mb-10">
+      June 1st - 2nd, 2025 | Essunza, Bunyore, Kenya
+     </p>
+     <div class="flex flex-wrap justify-center gap-4">
+      <button class="animated-btn bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-medium" data-section="details">
+       Event Details
+      </button>
+      <button class="animated-btn bg-transparent border-2 border-white text-white px-8 py-3 rounded-full text-lg font-medium" data-section="contact">
+       Contact Us
+      </button>
+     </div>
+    </div>
+   </div>
+   <div class="container mx-auto px-4 py-20">
+    <div class="text-center mb-16">
+     <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Join Us For A Special Occasion
+     </h2>
+     <div class="w-20 h-1 bg-blue-600 mx-auto mb-8">
+     </div>
+     <p class="text-lg max-w-3xl mx-auto">
+      Join the Mayore Family as we visit the Buyukah Family in Essunza, Bunyore, Kenya, to celebrate our family bonds, cultural heritage, and create lasting memories together
+     </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <div class="card bg-white rounded-lg shadow-lg p-8 text-center" style="opacity: 0;">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
+       <i class="fas fa-calendar-alt text-blue-600 text-2xl">
+       </i>
+      </div>
+      <h3 class="text-xl font-bold mb-3">
+       Event Date
+      </h3>
+      <p>
+       June 1st - 2nd, 2025
+      </p>
+     </div>
+     <div class="card bg-white rounded-lg shadow-lg p-8 text-center" style="opacity: 0;">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
+       <i class="fas fa-map-marker-alt text-blue-600 text-2xl">
+       </i>
+      </div>
+      <h3 class="text-xl font-bold mb-3">
+       Location
+      </h3>
+      <p>
+       The Buyukah Residence,
+       <br/>
+       Essunza, Bunyore, Kenya
+      </p>
+     </div>
+     <div class="card bg-white rounded-lg shadow-lg p-8 text-center" style="opacity: 0;">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 flex items-center justify-center">
+       <i class="fas fa-users text-blue-600 text-2xl">
+       </i>
+      </div>
+      <h3 class="text-xl font-bold mb-3">
+       Family Gathering
+      </h3>
+      <p>
+       Join us for a memorable family reunion
+      </p>
+     </div>
+    </div>
+    <div class="mt-16 text-center">
+     <h3 class="text-2xl font-bold mb-8">
+      Countdown to the Event
+     </h3>
+     <div class="flex flex-wrap justify-center gap-6">
+      <div class="countdown-item bg-blue-600 text-white rounded-lg p-4 w-24">
+       <div class="text-4xl font-bold" id="days">
+        54
+       </div>
+       <div class="text-sm mt-1">
+        Days
+       </div>
+      </div>
+      <div class="countdown-item bg-blue-600 text-white rounded-lg p-4 w-24">
+       <div class="text-4xl font-bold" id="hours">
+        14
+       </div>
+       <div class="text-sm mt-1">
+        Hours
+       </div>
+      </div>
+      <div class="countdown-item bg-blue-600 text-white rounded-lg p-4 w-24">
+       <div class="text-4xl font-bold" id="minutes">
+        53
+       </div>
+       <div class="text-sm mt-1">
+        Minutes
+       </div>
+      </div>
+      <div class="countdown-item bg-blue-600 text-white rounded-lg p-4 w-24">
+       <div class="text-4xl font-bold" id="seconds">
+        20
+       </div>
+       <div class="text-sm mt-1">
+        Seconds
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- About Section -->
+  <section class="section" id="about">
+   <div class="container mx-auto px-4 py-20">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+       About The Event
+      </h2>
+      <div class="w-20 h-1 bg-blue-600 mx-auto mb-8">
+      </div>
+     </div>
+     <div class="bg-white rounded-lg shadow-lg p-8 mb-12" style="opacity: 0;">
+      <h3 class="text-2xl font-bold mb-4">
+       Twenzetu Bunyore
+      </h3>
+      <p class="text-lg mb-6">
+       "Twenzetu Bunyore" means "Let's go to Bunyore" in Swahili. This special event is a celebration of our cultural heritage and family bonds. The Buyukah Family Visitation is an opportunity for family members from near and far to gather, reconnect, and strengthen our ties.
+      </p>
+      <p class="text-lg mb-6">
+       Bunyore, located in Vihiga County, Western Kenya, is known for its beautiful hills and rich cultural heritage. The Buyukah Residence in Essunza will serve as the perfect venue for our family gathering, providing a warm and welcoming environment surrounded by the natural beauty of the region.
+      </p>
+      <p class="text-lg">
+       This two-day event will feature storytelling, music, dance, and delicious local cuisine—rejoicing in our collective achievements and looking forward to the future of our family..
+      </p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden" style="opacity: 0;">
+       <img alt="Bunyore Hills" class="w-full h-64 object-cover" src="https://abirikenya.com/wp-content/uploads/2024/11/bunyore-hills-2.jpg"/>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-3">
+         The Beauty of Bunyore
+        </h3>
+        <p>
+         Explore the picturesque landscapes of Bunyore with its rolling hills and lush greenery.
+        </p>
+       </div>
+      </div>
+      <div class="card bg-white rounded-lg shadow-lg overflow-hidden" style="opacity: 0;">
+       <img alt="Cultural Heritage" class="w-full h-64 object-cover" src="https://abirikenya.com/wp-content/uploads/2024/11/bunyore-hills-3.jpg"/>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-3">
+         Cultural Heritage
+        </h3>
+        <p>
+         Immerse yourself in the rich cultural traditions and heritage of the Bunyore community.
+        </p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Gallery Section (New) -->
+  <section class="section" id="gallery">
+   <div class="container mx-auto px-4 py-20">
+    <div class="text-center mb-16">
+     <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Bunyore Gallery
+     </h2>
+     <div class="w-20 h-1 bg-blue-600 mx-auto mb-8">
+     </div>
+     <p class="text-lg max-w-3xl mx-auto">
+      Discover the beauty of Bunyore through these stunning images of its landscapes and cultural heritage.
+     </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+     <!-- Gallery Item 1 -->
+     <div class="gallery-item rounded-lg shadow-lg overflow-hidden" style="opacity: 0;">
+      <img alt="Bunyore Hills Panorama" class="w-full h-64 object-cover" src="https://abirikenya.com/wp-content/uploads/2024/11/bunyore-hills-2.jpg"/>
+      <div class="gallery-caption">
+       <h3 class="font-bold">
+        Bunyore Hills Panorama
+       </h3>
+       <p class="text-sm">
+        The majestic hills that define the Bunyore landscape
+       </p>
+      </div>
+     </div>
+     <!-- Gallery Item 2 -->
+     <div class="gallery-item rounded-lg shadow-lg overflow-hidden" style="opacity: 0;">
+      <img alt="Morning Mist over Bunyore" class="w-full h-64 object-cover" src="https://abirikenya.com/wp-content/uploads/2024/11/bunyore-hills-1.jpg"/>
+      <div class="gallery-caption">
+       <h3 class="font-bold">
+        Morning Mist over Bunyore
+       </h3>
+       <p class="text-sm">
+        The hills shrouded in early morning fog
+       </p>
+      </div>
+     </div>
+     <!-- Gallery Item 3 -->
+     <div class="gallery-item rounded-lg shadow-lg overflow-hidden" style="opacity: 0;">
+      <img alt="Lush Valleys" class="w-full h-64 object-cover" src="https://abirikenya.com/wp-content/uploads/2024/11/bunyore-hills-4.jpg"/>
+      <div class="gallery-caption">
+       <h3 class="font-bold">
+        Lush Valleys
+       </h3>
+       <p class="text-sm">
+        The fertile valleys between Bunyore's rolling hills
+       </p>
+      </div>
+     </div>
+     <!-- Gallery Item 4 -->
+     <div class="gallery-item rounded-lg shadow-lg overflow-hidden" style="opacity: 0;">
+      <img alt="Bunyore Cultural Festival" class="w-full h-64 object-cover" src="https://citizentv.obs.af-south-1.myhuaweicloud.com/115454/conversions/Screenshot-2023-12-29-at-10.29.32-og_image.webp"/>
+      <div class="gallery-caption">
+       <h3 class="font-bold">
+        Bunyore Cultural Festival
+       </h3>
+       <p class="text-sm">
+        Annual celebration of Bunyore's rich cultural heritage
+       </p>
+      </div>
+     </div>
+     <!-- Gallery Item 6 -->
+     <div class="gallery-item rounded-lg shadow-lg overflow-hidden" style="opacity: 0;">
+      <img alt="Sunset over Bunyore" class="w-full h-64 object-cover" src="https://abirikenya.com/wp-content/uploads/2024/11/bunyore-hills-5.jpg"/>
+      <div class="gallery-caption">
+       <h3 class="font-bold">
+        Sunset over Bunyore
+       </h3>
+       <p class="text-sm">
+        The breathtaking sunset view from the Bunyore hills
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Gallery Modal -->
+  <div class="gallery-modal">
+   <div class="gallery-modal-close">
+    <i class="fas fa-times">
+    </i>
+   </div>
+   <img alt="" class="gallery-modal-content" src=""/>
+   <div class="gallery-modal-caption">
+   </div>
+  </div>
+  <!-- Event Details Section -->
+  <section class="section" id="details">
+   <div class="container mx-auto px-4 py-20">
+    <div class="text-center mb-16">
+     <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Event Details
+     </h2>
+     <div class="w-20 h-1 bg-blue-600 mx-auto mb-8">
+     </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+     <div class="bg-white rounded-lg shadow-lg p-8" style="opacity: 0;">
+      <h3 class="text-2xl font-bold mb-6 text-blue-800">
+       Schedule
+      </h3>
+      <div class="mb-8">
+       <h4 class="text-xl font-semibold mb-3">
+        Day 1: June 1st, 2025
+       </h4>
+       <ul class="space-y-4">
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          10:30 AM - 12:00 PM
+         </span>
+         <span>
+          Arrival and Welcome at Buyukah Family Home
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          12:00 PM 1:00 PM
+         </span>
+         <span>
+          Welcome Lunch
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          1:30 PM - 3:00 PM
+         </span>
+         <span>
+          Family Introductions and Tour of Buyukah Home
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          3:00 PM – 4:30 PM
+         </span>
+         <span>
+          Sharing of Family Histories
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          4:30 PM – 6:00 PM
+         </span>
+         <span>
+          Traditional Dance Showcase
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          6:00 PM – 7:00 PM
+         </span>
+         <span>
+          Dinner
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          7:30 PM – 8:30 PM
+         </span>
+         <span>
+          Campfire Gathering and Memory Capsule Ceremony
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          8:30 PM – 9:30 PM
+         </span>
+         <span>
+          MC Entertainment &amp; Traditional Songs
+         </span>
+        </li>
+       </ul>
+       <li class="flex">
+        <span class="text-blue-600 font-semibold w-20">
+         9:30 PM – 10:30 PM
+        </span>
+        <span>
+         Storytelling by the Elders &amp; Shared Prayer
+        </span>
+       </li>
+       <li class="flex">
+        <span class="text-blue-600 font-semibold w-20">
+         10:30 PM
+        </span>
+        <span>
+         Rest for the Night
+        </span>
+       </li>
+      </div>
+      <div>
+       <h4 class="text-xl font-semibold mb-3">
+        Day 2: June 2nd, 2025
+       </h4>
+       <ul class="space-y-4">
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          8:30 AM
+         </span>
+         <span>
+          Morning Prayer and Breakfast
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          10:00 AM
+         </span>
+         <span>
+          Tour of Bunyore Hills
+         </span>
+        </li>
+        <li class="flex">
+         <span class="text-blue-600 font-semibold w-20">
+          12:00 PM
+         </span>
+         <span>
+          Final Prayers and Guest Departures
+         </span>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div>
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-8" style="opacity: 0;">
+       <h3 class="text-2xl font-bold mb-6 text-blue-800">
+        Venue Information
+       </h3>
+       <p class="mb-4">
+        <strong>
+         Location:
+        </strong>
+        The Buyukah Residence, Essunza, Bunyore, Kenya
+       </p>
+       <p class="mb-4">
+        <strong>
+         Facilities:
+        </strong>
+        Spacious outdoor gathering area, indoor meeting space, parking, restroom facilities
+       </p>
+       <p class="mb-6">
+        <strong>
+         Weather:
+        </strong>
+        Expect moderate temperatures with possible afternoon showers. Light jackets are recommended.
+       </p>
+       <div class="bg-blue-50 p-4 rounded-lg">
+        <h4 class="font-semibold mb-2">
+         Direction Tips:
+        </h4>
+        <p>
+         From Kisumu, take the Kisumu-Kakamega highway and turn at Luanda towards Emuhaya. Follow the signs to Essunza in Bunyore. The Buyukah Residence is marked with banners.
+        </p>
+       </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-8" style="opacity: 0;">
+       <h3 class="text-2xl font-bold mb-6 text-blue-800">
+        What to Bring
+       </h3>
+       <ul class="space-y-3">
+        <li class="flex items-start">
+         <i class="fas fa-check-circle text-green-500 mt-1 mr-3">
+         </i>
+         <span>
+          Comfortable clothing for two days
+         </span>
+        </li>
+        <li class="flex items-start">
+         <i class="fas fa-check-circle text-green-500 mt-1 mr-3">
+         </i>
+         <span>
+          Traditional attire for cultural ceremonies
+         </span>
+        </li>
+        <li class="flex items-start">
+         <i class="fas fa-check-circle text-green-500 mt-1 mr-3">
+         </i>
+         <span>
+          Family photographs and memorabilia
+         </span>
+        </li>
+        <li class="flex items-start">
+         <i class="fas fa-check-circle text-green-500 mt-1 mr-3">
+         </i>
+         <span>
+          Personal medications if needed
+         </span>
+        </li>
+        <li class="flex items-start">
+         <i class="fas fa-check-circle text-green-500 mt-1 mr-3">
+         </i>
+         <span>
+          Walking shoes for the Bunyore Hills tour
+         </span>
+        </li>
+        <li class="flex items-start">
+         <i class="fas fa-check-circle text-green-500 mt-1 mr-3">
+         </i>
+         <span>
+          A spirit of celebration and togetherness
+         </span>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+   <div class="container mx-auto px-4 py-20">
+    <div class="text-center mb-16">
+     <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Contact Us
+     </h2>
+     <div class="w-20 h-1 bg-blue-600 mx-auto mb-8">
+     </div>
+     <p class="text-lg max-w-3xl mx-auto">
+      Have questions about the event? Reach out to us using the contact form or the information below.
+     </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+     <div class="bg-white rounded-lg shadow-lg p-8 animate-slide-in" style="opacity: 0;">
+      <h3 class="text-2xl font-bold mb-6 text-blue-800">
+       Send Us a Message
+      </h3>
+      <form action="https://formsubmit.co/560f3ea9a0e407e600409508c62322fa" class="space-y-6" id="contactForm" method="POST">
+       <input name="_captcha" type="hidden" value="false"/>
+       <input name="_next" type="hidden" value="https://rrmayore.github.io/buyuka-visit/thank-you.html"/>
+       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="name">
+         Your Name
+        </label>
+        <input class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" id="name" name="name" required="" type="text"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="email">
+         Email Address
+        </label>
+        <input class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" id="email" name="email" required="" type="email"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="phone">
+         Phone Number
+        </label>
+        <input class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" id="phone" name="phone" type="tel"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="message">
+         Your Message
+        </label>
+        <textarea class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" id="message" name="message" required="" rows="5"></textarea>
+       </div>
+       <div class="hidden" id="formMessage">
+       </div>
+       <button class="animated-btn w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-md font-medium" type="submit">
+        Send Message
+        <i class="fas fa-paper-plane ml-2">
+        </i>
+       </button>
+      </form>
+     </div>
+     <div>
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-8 animate-slide-in" style="opacity: 0;">
+       <h3 class="text-2xl font-bold mb-6 text-blue-800">
+        Contact Information
+       </h3>
+       <ul class="space-y-5">
+        <li class="flex items-start">
+         <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+          <i class="fas fa-phone text-blue-600">
+          </i>
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">
+           Phone
+          </h4>
+          <p class="text-gray-600">
+           +254 722 530 411
+          </p>
+         </div>
+        </li>
+        <li class="flex items-start">
+         <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+          <i class="fas fa-envelope text-blue-600">
+          </i>
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">
+           Email
+          </h4>
+          <p class="text-gray-600">
+           rmayore@gmail.com
+          </p>
+         </div>
+        </li>
+        <li class="flex items-start">
+         <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+          <i class="fas fa-map-marker-alt text-blue-600">
+          </i>
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">
+           Location
+          </h4>
+          <p class="text-gray-600">
+           The Buyukah Residence, Essunza, Bunyore, Kenya
+          </p>
+         </div>
+        </li>
+       </ul>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-8 animate-slide-in" style="opacity: 0;">
+       <h3 class="text-2xl font-bold mb-6 text-blue-800">
+        Frequently Asked Questions
+       </h3>
+       <div class="space-y-5">
+        <div>
+         <h4 class="font-semibold text-lg mb-2">
+          Is accommodation provided?
+         </h4>
+         <p class="text-gray-600">
+          Limited accommodation is available at the residence. Please contact us in advance to arrange.
+         </p>
+        </div>
+        <div>
+         <h4 class="font-semibold text-lg mb-2">
+          Can I bring additional family members?
+         </h4>
+         <p class="text-gray-600">
+          Yes, all family members are welcome. Please inform us in advance for proper arrangements.
+         </p>
+        </div>
+        <div>
+         <h4 class="font-semibold text-lg mb-2">
+          What about transportation?
+         </h4>
+         <p class="text-gray-600">
+          Each guest is responsible for making their own transport arrangements.
+         </p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="section" id="family-gallery">
+   <div class="container mx-auto px-4 py-20">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
+     <h2 class="text-3xl font-bold mb-6 text-blue-800">
+      Family Gallery
+     </h2>
+     <p class="mb-6 text-gray-600">
+      Share your most memorable pictures from the Buyuka-Mayore visit! Use the upload option below to add your favorite moments.
+     </p>
+     <form>
+      <input accept="image/*" class="form-input w-full mb-4" multiple="" type="file"/>
+      <button class="animated-btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium" type="submit">
+       Upload Photos
+      </button>
+     </form>
+     <div class="mt-6 flex flex-wrap" id="gallery-display">
+      <!-- Images will appear here -->
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="section" id="family-feedback">
+   <div class="container mx-auto px-4 py-20">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+     <h2 class="text-3xl font-bold mb-6 text-blue-800">
+      Share Your Feedback
+     </h2>
+     <p class="mb-6 text-gray-600">
+      We'd love to hear your thoughts and experiences from the visit.
+     </p>
+     <form action="https://formsubmit.co/560f3ea9a0e407e600409508c62322fa" class="space-y-6" method="POST">
+      <input name="_captcha" type="hidden" value="false"/>
+      <input name="_next" type="hidden" value="https://rrmayore.github.io/buyuka-visit/thank-you.html"/>
+      <div>
+       <label class="block text-sm font-medium text-gray-700 mb-1" for="feedback-name">
+        Your Name
+       </label>
+       <input class="form-input w-full px-4 py-2 border border-gray-300 rounded-md" id="feedback-name" name="name" required="" type="text"/>
+      </div>
+      <div>
+       <label class="block text-sm font-medium text-gray-700 mb-1" for="feedback">
+        Your Feedback
+       </label>
+       <textarea class="form-input w-full px-4 py-2 border border-gray-300 rounded-md" id="feedback" name="feedback" required="" rows="4"></textarea>
+      </div>
+      <button class="animated-btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium" type="submit">
+       Submit Feedback
+      </button>
+     </form>
+    </div>
+   </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-16">
+   <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+     <div>
+      <h3 class="text-xl font-bold mb-4">
+       Twenzetu Bunyore
+      </h3>
+      <p class="mb-6">
+       Join us for a memorable family gathering at the Buyukah Family Visitation event in Bunyore, Kenya.
+      </p>
+      <div class="flex space-x-4">
+       <a class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all animate-slide-in" href="#" style="opacity: 0;">
+        <i class="fab fa-facebook-f">
+        </i>
+       </a>
+       <a class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all animate-slide-in" href="#" style="opacity: 0;">
+        <i class="fab fa-twitter">
+        </i>
+       </a>
+       <a class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all animate-slide-in" href="#" style="opacity: 0;">
+        <i class="fab fa-instagram">
+        </i>
+       </a>
+      </div>
+     </div>
+     <div>
+      <h3 class="text-xl font-bold mb-4">
+       Quick Links
+      </h3>
+      <ul class="space-y-3">
+       <li>
+        <a class="hover:text-blue-300 transition-colors" data-section="home" href="#">
+         Home
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-blue-300 transition-colors" data-section="about" href="#">
+         About the Event
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-blue-300 transition-colors" data-section="gallery" href="#">
+         Bunyore Gallery
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-blue-300 transition-colors" data-section="details" href="#">
+         Event Details
+        </a>
+       </li>
+       <li>
+        <a class="hover:text-blue-300 transition-colors" data-section="contact" href="#">
+         Contact Us
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-xl font-bold mb-4">
+       Contact
+      </h3>
+      <ul class="space-y-3">
+       <li class="flex items-center">
+        <i class="fas fa-phone mr-3">
+        </i>
+        <span>
+         +254 722 530 411
+        </span>
+       </li>
+       <li class="flex items-center">
+        <i class="fas fa-envelope mr-3">
+        </i>
+        <span>
+         rmayore@gmail.com
+        </span>
+       </li>
+       <li class="flex items-center">
+        <i class="fas fa-map-marker-alt mr-3">
+        </i>
+        <span>
+         Essunza, Bunyore, Kenya
+        </span>
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-blue-800 mt-12 pt-8 text-center text-sm text-blue-300">
+     <p>
+      © 2025 Twenzetu Bunyore - Buyukah Family Visitation. All Rights Reserved.
+     </p>
+    </div>
+   </div>
+  </footer>
+  <!-- Scroll to Top Button -->
+  <div class="scrollTop">
+   <i class="fas fa-arrow-up">
+   </i>
+  </div>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js">
+  </script>
+  <script>
+   document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+            const sections = document.querySelectorAll('.section');
+            
+            function showSection(sectionId) {
+                sections.forEach(section => {
+                    section.classList.remove('active-section');
+                });
+                document.getElementById(sectionId).classList.add('active-section');
+                
+                navLinks.forEach(link => {
+                    if(link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                
+                // Close mobile menu if open
+                document.querySelector('.nav-mobile').classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active');
+                
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
+            // Quick links in footer
+            document.querySelectorAll('footer a[data-section]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMobile = document.querySelector('.nav-mobile');
+            const closeMenu = document.querySelector('.close-menu');
+            
+            hamburger.addEventListener('click', function() {
+                navMobile.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+            
+            closeMenu.addEventListener('click', function() {
+                navMobile.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+            
+            // Countdown Timer
+            const eventDate = new Date('June 1, 2025 00:00:00').getTime();
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').innerHTML = days;
+                document.getElementById('hours').innerHTML = hours;
+                document.getElementById('minutes').innerHTML = minutes;
+                document.getElementById('seconds').innerHTML = seconds;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Scroll to Top Button
+            const scrollTopBtn = document.querySelector('.scrollTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Animated entrance for content
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-slide-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.card, .bg-white, .gallery-item').forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+            
+            // Buttons in hero section
+            document.querySelectorAll('.hero-section button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
+            // Gallery Modal
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const galleryModal = document.querySelector('.gallery-modal');
+            const galleryModalContent = document.querySelector('.gallery-modal-content');
+            const galleryModalCaption = document.querySelector('.gallery-modal-caption');
+            const galleryModalClose = document.querySelector('.gallery-modal-close');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').getAttribute('src');
+                    const imgAlt = this.querySelector('img').getAttribute('alt');
+                    const caption = this.querySelector('.gallery-caption h3').textContent;
+                    
+                    galleryModalContent.setAttribute('src', imgSrc);
+                    galleryModalContent.setAttribute('alt', imgAlt);
+                    galleryModalCaption.textContent = caption;
+                    galleryModal.classList.add('active');
+                });
+            });
+            
+            galleryModalClose.addEventListener('click', function() {
+                galleryModal.classList.remove('active');
+            });
+            
+            galleryModal.addEventListener('click', function(e) {
+                if (e.target === galleryModal) {
+                    galleryModal.classList.remove('active');
+                }
+            });
+            
+            // Download website functionality
+            document.getElementById('downloadBtn').addEventListener('click', function() {
+                const zip = new JSZip();
+                
+                // Get the HTML content
+                const htmlContent = document.documentElement.outerHTML;
+                zip.file("index.html", htmlContent);
+                
+                // Create a readme file
+                const readmeContent = `# Buyukah Family Visitation Website
+
+Thank you for downloading the Buyukah Family Visitation website files!
+
+## How to Use
+1. Extract all files from the zip archive
+2. Open the index.html file in any web browser
+3. To make edits, open index.html in a text editor
+
+## Contact Information
+If you need any assistance with the website, please contact:
+Email: rmayore@gmail.com
+Phone: +254 722 530 411
+
+## Event Details
+- Event: Twenzetu Bunyore - Buyukah Family Visitation
+- Date: June 1st - 2nd, 2025
+- Location: The Buyukah Residence, Essunza, Bunyore, Kenya
+
+Enjoy the website!`;
+                
+                zip.file("README.md", readmeContent);
+                
+                // Generate the zip file
+                zip.generateAsync({type:"blob"})
+                .then(function(content) {
+                    // Save the zip file
+                    saveAs(content, "buyukah_family_website.zip");
+                });
+            });
+        });
+  </script>
+  <script>
+   const fileInput = document.querySelector('#family-gallery input[type="file"]');
+  const galleryDisplay = document.getElementById('gallery-display');
+
+  if (fileInput && galleryDisplay) {
+    fileInput.addEventListener('change', (e) => {
+      galleryDisplay.innerHTML = '';
+      Array.from(e.target.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const img = document.createElement('img');
+          img.src = event.target.result;
+          img.alt = file.name;
+          img.className = 'w-32 h-32 object-cover m-2 rounded shadow';
+          galleryDisplay.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  }
+  </script>
+ </body>
+</html>
